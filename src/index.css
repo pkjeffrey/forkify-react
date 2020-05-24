@@ -25,3 +25,17 @@ a:hover,
 a:active {
   color: #ff7f50;
 }
+
+.loading svg {
+  width: 50px;
+  height: 50px;
+  fill: #ff7f50;
+  transform-origin: 44% 50%;
+  animation: rotate 1.5s infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0); }
+  100% {
+    transform: rotate(360deg); }
+}

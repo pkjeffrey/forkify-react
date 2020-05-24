@@ -11,6 +11,7 @@ export default class App extends React.Component {
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
   }
   render() {
+    const {query} = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -18,8 +19,8 @@ export default class App extends React.Component {
           <h1>Forkify in React</h1>
           <Search onSubmit={this.onSearchSubmit} />
         </header>
-        <section>
-          <RecipeList query={this.state.query} />
+        <section className="RecipeList">
+          <RecipeList key={query} query={query} />
         </section>
         <section>
           <p>And this paragraph and the next</p>
