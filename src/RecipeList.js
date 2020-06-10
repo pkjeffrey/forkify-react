@@ -5,13 +5,20 @@ import axios from 'axios'
 export default class RecipeList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {recipes: null};
+        this.state = {
+            recipes: null,
+            page: 1,
+        };
 
         this.getRecipes = this.getRecipes.bind(this);
+        this.onPrevClick = this.onPrevClick.bind(this);
+        this.onNextClick = this.onNextClick.bind(this);
     }
     render() {
-        const {query} = this.props;
-        const {recipes} = this.state;
+        const {query, resultsPerPage = 10} = this.props;
+        const {recipes, page} = this.state;
+        const start = (page - 1) * resultsPerPage;
+        const end = start + resultsPerPage;
         if (query) {
             if (recipes === null) {
                 return (
@@ -22,14 +29,37 @@ export default class RecipeList extends React.Component {
                     </div>
                 );
             } else {
+                const pages = Math.ceil(recipes.length / resultsPerPage);
+                const pageRecipes = recipes.slice(start, end);
+                let prevButton, nextButton;
+                if (page > 1) {
+                    prevButton = <button class="btn-inline results__btn--prev" onClick={this.onPrevClick}>
+                                    <svg class="search__icon">
+                                        <use href="icons.svg#icon-triangle-left"></use>
+                                    </svg>
+                                    <span>Page {page - 1}</span>
+                                </button>;
+                }
+                if (page < pages) {
+                    nextButton = <button class="btn-inline results__btn--next" onClick={this.onNextClick}>
+                                    <span>Page {page + 1}</span>
+                                    <svg class="search__icon">
+                                        <use href="icons.svg#icon-triangle-right"></use>
+                                    </svg>
+                                </button>;
+                }
                 return (
                     <div className="RecipeList">
-                        {recipes.map(recipe => <RecipeItem
+                        {pageRecipes.map(recipe => <RecipeItem
                             key={recipe.recipe_id}
                             recipeID={recipe.recipe_id}
                             title={recipe.title}
                             imageUrl={recipe.image_url}
                             publisher={recipe.publisher} />)}
+                        <div class="RecipeListPages">
+                            {prevButton}
+                            {nextButton}
+                        </div>
                     </div>
                 );
             }
@@ -51,5 +81,13 @@ export default class RecipeList extends React.Component {
                     this.setState({recipes: []});
                 });
         }
+    }
+    onPrevClick() {
+        const {page} = this.state;
+        this.setState({page: page - 1});
+    }
+    onNextClick() {
+        const {page} = this.state;
+        this.setState({page: page + 1});
     }
 }

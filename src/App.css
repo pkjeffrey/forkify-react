@@ -1,5 +1,6 @@
 .App {
     margin: 0 2%;
+    width: 100%;
 }
 .App-header {
     display: flex;
@@ -12,5 +13,9 @@
     margin-right: 1em;
 }
 .RecipeList {
-    height: 5em;
+    width: 25%;
+    float: left;
+}
+.RecipeListPages {
+    display: inline-block;
 }

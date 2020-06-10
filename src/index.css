@@ -39,3 +39,33 @@ a:active {
   100% {
     transform: rotate(360deg); }
 }
+
+.RecipeListPages {
+  width: 100%;
+}
+.btn-inline {
+  border: none;
+  border-radius: 10px;
+  color: #f0f8ff;
+  background-color: #ff7f50;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.btn-inline:focus {
+  outline: none;
+}
+.btn-inline svg {
+  width: 1.5em;
+  height: 1.5em;
+  fill: currentColor;
+}
+.btn-inline span {
+  margin: 0 .5rem;
+}
+.results__btn--prev {
+  float: left;
+}
+.results__btn--next {
+  float: right;
+}

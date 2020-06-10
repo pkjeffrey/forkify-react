@@ -19,7 +19,7 @@ export default class App extends React.Component {
           <h1>Forkify in React</h1>
           <Search onSubmit={this.onSearchSubmit} />
         </header>
-        <section className="RecipeList">
+        <section>
           <RecipeList key={query} query={query} />
         </section>
         <section>
