@@ -2,10 +2,14 @@ import React from 'react';
 import './RecipeItem.css';
 
 export default class RecipeItem extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onSelect = this.onSelect.bind(this);
+    }
     render() {
-        const {recipeID, title, imageUrl, publisher} = this.props;
+        const {title, imageUrl, publisher} = this.props;
         return (
-            <div className="RecipeItem">
+            <div className="RecipeItem" onClick={this.onSelect}>
                 <figure>
                     <img src={imageUrl} alt={title} />
                 </figure>
@@ -15,5 +19,9 @@ export default class RecipeItem extends React.Component {
                 </div>
             </div>
         );
+    }
+    onSelect() {
+        const {onSelect, recipeID} = this.props;
+        onSelect(recipeID);
     }
 }

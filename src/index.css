@@ -40,9 +40,6 @@ a:active {
     transform: rotate(360deg); }
 }
 
-.RecipeListPages {
-  width: 100%;
-}
 .btn-inline {
   border: none;
   border-radius: 10px;
@@ -68,4 +65,17 @@ a:active {
 }
 .results__btn--next {
   float: right;
+}
+
+.RecipeDisplay h1 {
+  margin: 0;
+}
+.RecipeDisplay img {
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 20px;
+  margin-left: 2em;
+  display: block;
+  float: right;
+  box-shadow: 2px 2px 2px #f0f8ff7a;
 }

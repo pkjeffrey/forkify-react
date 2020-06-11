@@ -22,7 +22,7 @@ export default class RecipeList extends React.Component {
         if (query) {
             if (recipes === null) {
                 return (
-                    <div className="loading">
+                    <div className="RecipeList loading">
                         <svg>
                             <use href="icons.svg#icon-cw"></use>
                         </svg>
@@ -33,17 +33,17 @@ export default class RecipeList extends React.Component {
                 const pageRecipes = recipes.slice(start, end);
                 let prevButton, nextButton;
                 if (page > 1) {
-                    prevButton = <button class="btn-inline results__btn--prev" onClick={this.onPrevClick}>
-                                    <svg class="search__icon">
+                    prevButton = <button className="btn-inline results__btn--prev" onClick={this.onPrevClick}>
+                                    <svg className="search__icon">
                                         <use href="icons.svg#icon-triangle-left"></use>
                                     </svg>
                                     <span>Page {page - 1}</span>
                                 </button>;
                 }
                 if (page < pages) {
-                    nextButton = <button class="btn-inline results__btn--next" onClick={this.onNextClick}>
+                    nextButton = <button className="btn-inline results__btn--next" onClick={this.onNextClick}>
                                     <span>Page {page + 1}</span>
-                                    <svg class="search__icon">
+                                    <svg className="search__icon">
                                         <use href="icons.svg#icon-triangle-right"></use>
                                     </svg>
                                 </button>;
@@ -55,8 +55,9 @@ export default class RecipeList extends React.Component {
                             recipeID={recipe.recipe_id}
                             title={recipe.title}
                             imageUrl={recipe.image_url}
-                            publisher={recipe.publisher} />)}
-                        <div class="RecipeListPages">
+                            publisher={recipe.publisher}
+                            onSelect={this.props.onSelect} />)}
+                        <div className="RecipeListPages">
                             {prevButton}
                             {nextButton}
                         </div>
@@ -64,7 +65,7 @@ export default class RecipeList extends React.Component {
                 );
             }
         }
-        return <div></div>
+        return <div className="RecipeList"></div>
     }
     componentDidMount() {
         const {query} = this.props;
